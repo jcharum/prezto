@@ -84,6 +84,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv background_jobs context)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 # POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_unique"
 
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 LIBRARY_PYTHON=$HOME/Library/Python/3.7
 
 LOCAL_ZPROFILE="${ZDOTDIR:-$HOME}/.zsh/zprofile.local"
