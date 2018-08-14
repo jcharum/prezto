@@ -17,8 +17,8 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export PAGER='less'
 
 #
@@ -61,3 +61,38 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
+
+HISTFILE=~/.history
+SAVEHIST=50000
+HISTSIZE=50000
+
+PATH=\
+$HOME/Applications/bin:\
+/usr/local/bin:\
+$PATH
+
+EDITOR=nvim
+
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_STATUS_OK=true
+POWERLEVEL9K_VI_INSERT_MODE_STRING='I'
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='C'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv background_jobs context)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_unique"
+
+LIBRARY_PYTHON=$HOME/Library/Python/3.7
+
+LOCAL_ZPROFILE="${ZDOTDIR:-$HOME}/.zsh/zprofile.local"
+if [ -f "${LOCAL_ZPROFILE}" ]; then
+    source "${LOCAL_ZPROFILE}"
+fi
+
+POWERLINE_BIN=$LIBRARY_PYTHON/bin
+export POWERLINE_COMMAND=$POWERLINE_BIN/powerline
+export POWERLINE_CONFIG_COMMAND=$POWERLINE_BIN/powerline-config
+export POWERLINE_DAEMON_COMMAND=$POWERLINE_BIN/powerline-daemon
+export POWERLINE_CONF=$LIBRARY_PYTHON/lib/python/site-packages/powerline/bindings/tmux/powerline.conf
