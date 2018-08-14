@@ -11,3 +11,50 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+alias ls='ls -G -F'
+alias fn='find . -name'
+alias grep='grep --color'
+
+fgrep () { find . -name "$1" -exec grep --color -H "$2" "{}" \; }
+fgrepj () { find . -name "*.java" -exec grep --color -H "$1" "{}" \; }
+fgrepp () { find . -name "*.py" -exec grep --color -H "$1" "{}" \; }
+fnvim () { find . -name "$1" -exec vim "{}" \; }
+title () { echo "\033]0;$1\007" }
+
+setopt autocd
+setopt nohup
+setopt no_check_jobs
+setopt ignoreEOF
+setopt inc_append_history
+setopt hist_ignore_dups
+
+bindkey -v
+
+bindkey -M vicmd        "l"     vi-insert
+
+bindkey -M vicmd        "h"     vi-backward-char
+bindkey -M vicmd        "i"     vi-forward-char
+bindkey -M vicmd        "n"     down-line-or-history
+bindkey -M vicmd        "e"     up-line-or-history
+
+bindkey -M vicmd        "j"     vi-repeat-search
+bindkey -M vicmd        "J"     vi-rev-repeat-search
+
+bindkey -M vicmd        "d"     vi-delete
+bindkey -M vicmd        "D"     vi-kill-eol
+bindkey -M vicmd        "N"     vi-join
+
+bindkey                 "^R"	history-incremental-search-backward
+bindkey                 "^N"	history-incremental-search-forward
+
+autoload -U compinit
+compinit
+
+autoload zmv
+
+LOCAL_ZSHRC="${ZDOTDIR:-$HOME}/.zsh/zshrc.local"
+if [ -f "${LOCAL_ZSHRC}" ]; then
+    source "${LOCAL_ZSHRC}"
+fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
