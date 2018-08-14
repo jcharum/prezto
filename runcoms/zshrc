@@ -19,7 +19,12 @@ fgrep () { find . -name "$1" -exec grep --color -H "$2" "{}" \; }
 fgrepj () { find . -name "*.java" -exec grep --color -H "$1" "{}" \; }
 fgrepp () { find . -name "*.py" -exec grep --color -H "$1" "{}" \; }
 fnvim () { find . -name "$1" -exec vim "{}" \; }
-title () { echo "\033]0;$1\007" }
+
+function title() {
+  if [[ "$TERM" == ((x|a|ml|dt|E)term*|(u|)rxvt*) ]]; then
+    printf "\e]1;%s\a" ${(V)argv}
+  fi
+}
 
 setopt autocd
 setopt nohup
