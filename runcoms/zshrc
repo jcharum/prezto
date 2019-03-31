@@ -32,6 +32,9 @@ setopt no_check_jobs
 setopt ignoreEOF
 setopt inc_append_history
 setopt hist_ignore_dups
+setopt nomenucomplete
+setopt noautomenu
+setopt nocorrect
 
 bindkey -v
 
