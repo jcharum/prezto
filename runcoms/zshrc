@@ -26,6 +26,8 @@ function title() {
   fi
 }
 
+KEYTIMEOUT=1
+
 setopt autocd
 setopt nohup
 setopt no_check_jobs
