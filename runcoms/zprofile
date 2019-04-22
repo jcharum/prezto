@@ -66,6 +66,8 @@ HISTFILE=~/.history
 SAVEHIST=50000
 HISTSIZE=50000
 
+export FZF_DEFAULT_COMMAND='fd --type f'
+
 export PATH=\
 $HOME/Applications/bin:\
 /usr/local/bin:\
