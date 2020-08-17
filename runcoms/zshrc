@@ -67,3 +67,5 @@ if [ -f "${LOCAL_ZSHRC}" ]; then
     source "${LOCAL_ZSHRC}"
 fi
 
+# Simplify prompt so as to not confuse Emacs TRAMP.
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
