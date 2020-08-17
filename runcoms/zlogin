@@ -24,3 +24,8 @@ if [[ -o INTERACTIVE && -t 2 ]]; then
   fi
 
 fi >&2
+
+LOCAL_ZLOGIN="${ZDOTDIR:-$HOME}/.zsh/zlogin.local"
+if [ -f "${LOCAL_ZLOGIN}" ]; then
+    source "${LOCAL_ZLOGIN}"
+fi
