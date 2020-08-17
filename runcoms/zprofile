@@ -77,15 +77,7 @@ EDITOR=nvim
 
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-LIBRARY_PYTHON=$HOME/Library/Python/3.7
-
 LOCAL_ZPROFILE="${ZDOTDIR:-$HOME}/.zsh/zprofile.local"
 if [ -f "${LOCAL_ZPROFILE}" ]; then
     source "${LOCAL_ZPROFILE}"
 fi
-
-POWERLINE_BIN=$LIBRARY_PYTHON/bin
-export POWERLINE_COMMAND=$POWERLINE_BIN/powerline
-export POWERLINE_CONFIG_COMMAND=$POWERLINE_BIN/powerline-config
-export POWERLINE_DAEMON_COMMAND=$POWERLINE_BIN/powerline-daemon
-export POWERLINE_CONF=$LIBRARY_PYTHON/lib/python/site-packages/powerline/bindings/tmux/powerline.conf
