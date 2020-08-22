@@ -70,7 +70,6 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 
 export PATH=\
 $HOME/Applications/bin:\
-$HOME/.cargo/bin:\
 /usr/local/bin:\
 $HOME/.yarn/bin:\
 $HOME/.config/yarn/global/node_modules/.bin:\
@@ -84,28 +83,9 @@ if [ -f '/Users/jjc/Desktop/google-cloud-sdk/completion.zsh.inc' ]; then . '/Use
 
 EDITOR=nvim
 
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_VI_INSERT_MODE_STRING='I'
-POWERLEVEL9K_VI_COMMAND_MODE_STRING='C'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv background_jobs context)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_unique"
-
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-LIBRARY_PYTHON=$HOME/Library/Python/3.7
-POWERLINE_BIN=$LIBRARY_PYTHON/bin
-export POWERLINE_COMMAND=$POWERLINE_BIN/powerline
-export POWERLINE_CONFIG_COMMAND=$POWERLINE_BIN/powerline-config
-export POWERLINE_DAEMON_COMMAND=$POWERLINE_BIN/powerline-daemon
-export POWERLINE_CONF=$LIBRARY_PYTHON/lib/python/site-packages/powerline/bindings/tmux/powerline.conf
 
 LOCAL_ZPROFILE="${ZDOTDIR:-$HOME}/.zsh/zprofile.local"
 if [ -f "${LOCAL_ZPROFILE}" ]; then
     source "${LOCAL_ZPROFILE}"
 fi
-

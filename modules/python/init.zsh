@@ -27,7 +27,7 @@ if (( $+commands[pyenv] )); then
 else
   if [[ -n "$PYTHONUSERBASE" ]]; then
     path=($PYTHONUSERBASE/bin $path)
-  elif [[ "$OSTYPE" == darwin* ]]; then
+  elif is-darwin; then
     path=($HOME/Library/Python/*/bin(N) $path)
   else
     # This is subject to change.
@@ -73,7 +73,7 @@ function _python-workon-cwd {
   if [[ "$ENV_NAME" != "" ]]; then
     # Activate the environment only if it is not already active
     if [[ "$VIRTUAL_ENV" != "$WORKON_HOME/$ENV_NAME" ]]; then
-      if [[ -e "$WORKON_HOME/$ENV_NAME/bin/activate" ]]; then
+      if [[ -n "$WORKON_HOME" && -e "$WORKON_HOME/$ENV_NAME/bin/activate" ]]; then
         workon "$ENV_NAME" && export CD_VIRTUAL_ENV="$ENV_NAME"
       elif [[ -e "$ENV_NAME/bin/activate" ]]; then
         source $ENV_NAME/bin/activate && export CD_VIRTUAL_ENV="$ENV_NAME"
@@ -154,10 +154,14 @@ if (( $#commands[(i)pip(|[23])] )); then
 
   # Detect and use one available from among 'pip', 'pip2', 'pip3' variants
   pip_command="$commands[(i)pip(|[23])]"
+fi
+if [[ -n "$pip_command" ]]; then
+  cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/prezto/pip-cache.zsh"
 
   if [[ "$pip_command" -nt "$cache_file" \
         || "${ZDOTDIR:-$HOME}/.zpreztorc" -nt "$cache_file" \
         || ! -s "$cache_file" ]]; then
+    mkdir -p "$cache_file:h"
     # pip is slow; cache its output. And also support 'pip2', 'pip3' variants
     $pip_command completion --zsh \
       | sed -e "s/\(compctl -K [-_[:alnum:]]* pip\).*/\1{,2,3}{,.{0..9}}/" \
@@ -169,6 +173,7 @@ if (( $#commands[(i)pip(|[23])] )); then
 
   unset cache_file pip_command
 fi
+unset pip_command
 
 # Load conda into the shell session, if requested
 zstyle -T ':prezto:module:python' conda-init

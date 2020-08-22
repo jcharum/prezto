@@ -40,22 +40,8 @@ setopt nocorrect
 
 bindkey -v
 
-bindkey -M vicmd        "l"     vi-insert
-
-bindkey -M vicmd        "h"     vi-backward-char
-bindkey -M vicmd        "i"     vi-forward-char
-bindkey -M vicmd        "n"     down-line-or-history
-bindkey -M vicmd        "e"     up-line-or-history
-
-bindkey -M vicmd        "j"     vi-repeat-search
-bindkey -M vicmd        "J"     vi-rev-repeat-search
-
-bindkey -M vicmd        "d"     vi-delete
-bindkey -M vicmd        "D"     vi-kill-eol
-bindkey -M vicmd        "N"     vi-join
-
-bindkey                 "^R"	history-incremental-search-backward
-bindkey                 "^N"	history-incremental-search-forward
+bindkey                 "^R" history-incremental-search-backward
+bindkey                 "^N" history-incremental-search-forward
 
 autoload -U compinit
 compinit
@@ -67,3 +53,8 @@ if [ -f "${LOCAL_ZSHRC}" ]; then
     source "${LOCAL_ZSHRC}"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Simplify prompt so as to not confuse Emacs TRAMP.
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
